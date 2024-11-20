@@ -1,0 +1,114 @@
+<!-- Created by: Gabreil Hurtado -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form with Secret Message</title>
+    <!-- Adding some creative elements with a nice background color and custom fonts -->
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        #secret-message {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Form container to center the form on the page -->
+    <div class="form-container">
+        <form id="user-form">
+            <!-- First name input box -->
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+
+            <!-- Last name input box -->
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+
+            <!-- Zip code input box -->
+            <label for="zip-code">Zip Code:</label>
+            <input type="text" id="zip-code" name="zip-code" required>
+
+            <!-- Submit button for the form -->
+            <button type="button" class="btn" onclick="validateForm()">Submit</button>
+        </form>
+
+        <!-- Secret message to show only when validation passes -->
+        <div id="secret-message">Congratulations! You've found the secret message!</div>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        // Function to validate user inputs
+        function validateForm() {
+            // Getting user inputs from form
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const zipCode = document.getElementById('zip-code').value;
+
+            // Combining first name and last name
+            const fullName = firstName + ' ' + lastName;
+
+            // Check if the full name length is more than 20 characters
+            if (fullName.length > 20) {
+                alert('Your full name must be 20 characters or less.');
+                return;
+            }
+
+            // Check if the zip code is exactly 5 digits
+            const zipCodePattern = /^\d{5}$/;
+            if (!zipCodePattern.test(zipCode)) {
+                alert('Please enter a valid 5-digit zip code.');
+                return;
+            }
+
+            // If all validations pass, show the secret message
+            document.getElementById('secret-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
